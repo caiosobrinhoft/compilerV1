@@ -16,10 +16,14 @@ OPERATOR     "+"|"-"|"*"|"/"
 SEP          ","|";"
 PARENTHESIS  "("|")"
 BRACKETS     "{"|"}"
+COMMENT      \/\/
+INEQ         "<"|">"|"<="|">="
+OR           "||"
+AND          "&&"
+NOT          "!"
 
 %%
 
-// Ações para cada token reconhecido
 {ID}        { printf("ID: %s\n", yytext); token_counter++; }
 {NUM}       { printf("NUM: %s\n", yytext); token_counter++; }
 {ASSIGN}    { printf("ASSIGN: %s\n", yytext); token_counter++; }
@@ -29,14 +33,9 @@ BRACKETS     "{"|"}"
 {SEP}       { printf("SEP: %s\n", yytext); token_counter++; }
 {PARENTHESIS} { printf("PARENTHESIS: %s\n", yytext); token_counter++; }
 {BRACKETS}  { printf("BRACKETS: %s\n", yytext); token_counter++; }
-
-// Ignora comentários de linha
-"//".*      { /* Ignora comentários de linha */ }
-// Ignora comentários de bloco
-"/*"[^*]*"*"+([^/*][^*]*"*"+)*"/" { /* Ignora comentários de bloco */ }
-// Ignora espaços em branco
-[ \t\n]     { /* Ignora espaços em branco */ }
-// Trata caracteres desconhecidos
+{COMMENT}   { printf("COMMENT(%s)\n", yytext); token_counter++; }
+[ \t\r]     // Ignorar espaços
+\n          { printf("\n"); }
 .           { printf("Caractere desconhecido: %s\n", yytext); errors++; }
 
 %%
