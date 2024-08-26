@@ -18,22 +18,26 @@ BRACKETS     "{"|"}"
 
 %%
 
-{ID}        { printf("ID: %s\n", yytext); }
-{NUM}       { printf("NUM: %s\n", yytext); }
-{ASSIGN}    { printf("ASSIGN: %s\n", yytext); }
-{EQUAL}     { printf("EQUAL: %s\n", yytext); }
-{DIFF}      { printf("DIFF: %s\n", yytext); }
-{OPERATOR}  { printf("OPERATOR: %s\n", yytext); }
-{SEP}       { printf("SEP: %s\n", yytext); }
+{ID}        { printf("ID: %s\n", yytext); token_counter++; }
+{NUM}       { printf("NUM: %s\n", yytext); token_counter++; }
+{ASSIGN}    { printf("ASSIGN: %s\n", yytext); token_counter++; }
+{EQUAL}     { printf("EQUAL: %s\n", yytext); token_counter++; }
+{DIFF}      { printf("DIFF: %s\n", yytext); token_counter++; }
+{OPERATOR}  { printf("OPERATOR: %s\n", yytext); token_counter++; }
+{SEP}       { printf("SEP: %s\n", yytext); token_counter++; }
+{PARENTHESIS} { printf("PARENTHESIS: %s\n", yytext); token_counter++; }
+{BRACKETS}  { printf("BRACKETS: %s\n", yytext); token_counter++; }
 "//".*      { /* Ignora comentários de linha */ }
 "/*"[^*]*"*"+([^/*][^*]*"*"+)*"/" { /* Ignora comentários de bloco */ }
 [ \t\n]     { /* Ignora espaços em branco */ }
-.           { printf("Caractere desconhecido: %s\n", yytext); }
+.           { printf("Caractere desconhecido: %s\n", yytext); errors++; }
 
 %%
 
 int main(int argc, char **argv) {
     yylex();
+    printf("Total de tokens: %d\n", token_counter);
+    printf("Total de erros: %d\n", errors);
     return 0;
 }
 
