@@ -33,7 +33,7 @@ BRACKETS     "{"|"}"
 .           { printf("Caractere desconhecido: %s\n", yytext); errors++; }
 
 %%
-
+w
 int main(int argc, char **argv) {
     yylex();
     printf("Total de tokens: %d\n", token_counter);
