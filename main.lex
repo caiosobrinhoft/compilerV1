@@ -33,8 +33,15 @@ BRACKETS     "{"|"}"
 .           { printf("Caractere desconhecido: %s\n", yytext); errors++; }
 
 %%
-w
 int main(int argc, char **argv) {
+    if (argc > 1) {
+        FILE *file = fopen(argv[1], "r");
+        if (!file) {
+            perror("Erro ao abrir o arquivo");
+            return 1;
+        }
+        yyin = file; // Redireciona a entrada padrão para o arquivo
+    }
     yylex();
     printf("Total de tokens: %d\n", token_counter);
     printf("Total de erros: %d\n", errors);
