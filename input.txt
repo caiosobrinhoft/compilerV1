@@ -1,9 +1,9 @@
 12 = a/2;
-15 RECEBA var2;
-var2 RECEBA var3;
+15 = var2;
+var2 = var3;
 int a, b;
 a * b = c
-A + d RECEBA 500.14
+A + d = 500.14
 //comentario
 if(var == 32 && var2 != 2 || var3 <= 4 )
 {
