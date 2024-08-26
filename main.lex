@@ -4,15 +4,16 @@ int token_counter = 0;
 int errors = 0;
 %}
 
-DIGIT   [0-9]
-LETTER  [a-zA-Z]
-ID      {LETTER}({LETTER}|{DIGIT}|_)*
-NUM     {DIGIT}+
-ASSIGN  "="
-OPERATOR "+"|"-"|"*"|"/"
-SEP     [;,\(\)\{\}]
-EQUAL   "=="
-DIFF    "!="
+DIGIT        [0-9]
+LETTER       [a-zA-Z]
+ID           {LETTER}({LETTER}|{DIGIT}|_)*
+NUM          {DIGIT}+
+ASSIGN       "="
+OPERATOR     "+"|"-"|"*"|"/"
+SEP          ","|";"
+PARENTHESIS  "("|")"
+EQUAL        "=="
+DIFF         "!="
 
 %%
 
