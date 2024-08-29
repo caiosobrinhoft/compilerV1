@@ -9,3 +9,6 @@ if(var == 32 && var2 != 2 || var3 <= 4 )
 {
 	printf("hello world!");
 }
+
+//exemplo de erro
+a ~ d = 500,14;
